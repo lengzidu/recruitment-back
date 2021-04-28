@@ -17,7 +17,7 @@ conn.on('connected', ()=>{
 
 // 2.1. 字义 Schema(描述文档结构)
 
-const jobSchema = mongoose.Schema({salary: String, info: String, post: String})
+const jobSchema = mongoose.Schema({salary: String, info: String, post: String, create_time: Number})
 const userSchema = mongoose.Schema({
   username: {type: String, required: true},   //用户名
   password: {type: String, required: true},    //密码

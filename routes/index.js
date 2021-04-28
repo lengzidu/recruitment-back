@@ -65,11 +65,11 @@ router.post('/save', (req, res)=>{
 })
 
 // 获取信息列表
-router.get('/userList', (req, res) => {
+router.get('/userlist', (req, res) => {
   const {type} = req.query
   UserModel.find({type}, (err, users) => {
     if (type === 'dashen') {
-      res.send(success(users))
+      res.send(success(users.reverse()))
     } else {
       let temp = []
       users.map(obj=>{
@@ -83,11 +83,12 @@ router.get('/userList', (req, res) => {
               post: obk.post,
               salary: obk.salary,
               info: obk.info,
+              create_time: obk.create_time
             })
           }
         })
       })
-      res.send(success(temp))
+      res.send(success(temp.sort((a, b)=>b.create_time - a.create_time)))
     }
   })
 })
